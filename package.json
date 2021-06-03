@@ -1,0 +1,28 @@
+{
+  "name": "forkify_own_version",
+  "version": "1.0.0",
+  "description": "forkify_custom_js",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Denver-Meadows/Forkify_own_version.git"
+  },
+  "author": "Denver Meadows",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Denver-Meadows/Forkify_own_version/issues"
+  },
+  "homepage": "https://github.com/Denver-Meadows/Forkify_own_version#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0-beta.3.1",
+    "parcel": "^2.0.0-beta.3.1"
+  },
+  "dependencies": {
+    "core-js": "^3.13.1",
+    "regenerator-runtime": "^0.13.7"
+  }
+}
