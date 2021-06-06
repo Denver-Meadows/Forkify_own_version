@@ -27,13 +27,8 @@ const controlLoadRecipe = async function() {
     // Awaiting the AJAX call
     await model.loadRecipe(id);
 
-    // Passing the data to render
-    //console.log(model.state.recipe)
+    // Passing the data and rendering
     recipeView.render(model.state.recipe)
-
-    // Logging data from the state
-    console.log(model.state.recipe)
-
 
   } catch(err) {
     console.error(`My Err ${err}`)

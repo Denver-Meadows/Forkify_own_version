@@ -2,33 +2,11 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime/runtime';
 import icons from 'url:../../img/icons.svg'
-//import icons from 'url:../../img/icons.svg'
+import View from './View.js'
 
-class RecipeView {
+class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _data;
-
-  // Data -> State -> Controller -> Render in RecipeView
-  render = function(data) {
-    this._data = data
-    console.log(data)
-
-    this._parentElement.innerHTML = '';
-    this._parentElement.insertAdjacentHTML('afterbegin', this._generateMarkup())
-  };
-
-  // Render Spinner in between loading images
-  renderSpinner = function() {
-    const markup = `
-      <div class="spinner">
-        <svg>
-          <use href="${icons}#icon-loader"></use>
-        </svg>
-      </div>
-    `
-    this._parentElement.innerHTML = '';
-    this._parentElement.insertAdjacentHTML('afterbegin', markup);
-  };
 
   _generateMarkup = function(){
     return`
