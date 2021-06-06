@@ -2,30 +2,34 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime/runtime';
 
+export const state = {
+  recipe: {
+  },
+  
+};
+
 export const getSearchResults = async function() {
   try {
     const res = await fetch('https://forkify-api.herokuapp.com/api/v2/recipes?search=pizza')
     const data = await res.json();
     console.log(data)
-    const recipes = data.data.recipes
+    const recipes = data.data.recipes;
 
-    
-    //id = '5ed6604591c37cdc054bcd09'
   } catch(err) {
     console.error(`My Err - ${err}`)
   }
 };
 
-export const getRecipe = async function() {
+export const loadRecipe = async function(id) {
   try {
-    const id = '5ed6604591c37cdc054bcd09'
+
+    // Getting the recipe via the ID
     const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`)
-    //console.log(res)
     const { data } = await res.json();
-    console.log(data)
     // console.log(data.data.recipe)
 
-    const recipe = {
+    // Reconfiguring and sending the recipe to the state of the app
+    state.recipe = {
       title: data.recipe.title,
       cookingTime: data.recipe.cooking_time,
       id: data.recipe.id,
@@ -37,7 +41,10 @@ export const getRecipe = async function() {
     };
 
   } catch(err) {
-    console.error(`My Err - ${err}`)
+    // Throw error to controller
+    throw err
   }
 };
+
+
 
