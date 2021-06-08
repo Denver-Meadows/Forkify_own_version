@@ -5,6 +5,7 @@ import icons from 'url:../img/icons.svg'
 import * as model from '../js/model.js';
 import recipeView from '../js/views/recipeView.js';
 
+
 // API for this app
 // https://forkify-api.herokuapp.com/v2
 
@@ -48,5 +49,5 @@ const controlLoadRecipe = async function() {
 
 
 // create init function
-//controlSearchResults();
+controlSearchResults();
 controlLoadRecipe();
