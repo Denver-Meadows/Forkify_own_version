@@ -10,10 +10,16 @@ export const state = {
   
 };
 
-export const getSearchResults = async function() {
+export const getSearchResults = async function(query) {
   try {
-    const res = await fetch(`${API_URL}?search=pizza`)
+    const res = await fetch(`${API_URL}${query}`)
     const data = await res.json();
+
+    // Checking for correct URL
+    if (!res.ok) throw new Error(`${res.statusText} ${res.status}`)
+
+    // showing the data from the pizza search result
+    console.log(data)
     const recipes = data.data.recipes;
 
   } catch(err) {

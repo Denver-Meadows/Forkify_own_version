@@ -16,7 +16,9 @@ import recipeView from '../js/views/recipeView.js';
 const controlSearchResults = async function() {
   try {
 
-    model.getSearchResults()
+    // hardcoding the pizza search.  Will need to update this
+    const query = `?search=pizza`
+    await model.getSearchResults(query)
 
   }catch(err) {
     console.error(`My Err ${err}`)
