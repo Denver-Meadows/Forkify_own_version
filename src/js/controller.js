@@ -8,6 +8,13 @@ import recipeView from '../js/views/recipeView.js';
 // API for this app
 // https://forkify-api.herokuapp.com/v2
 
+
+
+// TODO
+// view "LEFT OFF HERE"
+
+
+
 const controlSearchResults = function() {
   model.getSearchResults()
 };
