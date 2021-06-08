@@ -6,6 +6,8 @@ import icons from 'url:../../img/icons.svg'
 export default class View {
   _parentElement;
   _data;
+  _successMessage;
+  _failureMessage
 
 
   // Data -> State -> Controller -> Render in RecipeView

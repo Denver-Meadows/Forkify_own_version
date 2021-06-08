@@ -8,6 +8,7 @@ import {Fraction} from 'fractional';
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _data;
+  _failureMessage = 'Sorry please try searching for another recipe.'
 
   _generateMarkup = function(){
     return`

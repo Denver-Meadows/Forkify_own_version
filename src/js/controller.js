@@ -9,15 +9,18 @@ import recipeView from '../js/views/recipeView.js';
 // API for this app
 // https://forkify-api.herokuapp.com/v2
 
-
-
 // TODO
 // view "LEFT OFF HERE"
 
 
+const controlSearchResults = async function() {
+  try {
 
-const controlSearchResults = function() {
-  model.getSearchResults()
+    model.getSearchResults()
+
+  }catch(err) {
+    console.error(`My Err ${err}`)
+  }
 };
 
 

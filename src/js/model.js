@@ -12,14 +12,12 @@ export const state = {
 
 export const getSearchResults = async function() {
   try {
-    console.log(API_URL)
     const res = await fetch(`${API_URL}?search=pizza`)
     const data = await res.json();
-    console.log(data)
     const recipes = data.data.recipes;
 
   } catch(err) {
-    console.error(`My Err - ${err}`)
+    throw error
   }
 };
 
@@ -29,7 +27,9 @@ export const loadRecipe = async function(id) {
     // Getting the recipe via the ID
     const res = await fetch(`${API_URL}${id}`)
     const { data } = await res.json();
-    // console.log(data.data.recipe)
+
+    // Checking for correct URL
+    if (!res.ok) throw new Error(`${res.statusText} ${res.status}`)
 
     // Reconfiguring and sending the recipe to the state of the app
     state.recipe = {
