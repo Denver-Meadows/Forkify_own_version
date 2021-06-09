@@ -2,6 +2,7 @@ import {API_URL} from './config.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime/runtime';
+import {getJSON} from './helpers.js';
 
 
 export const state = {
@@ -12,30 +13,23 @@ export const state = {
 
 export const getSearchResults = async function(query) {
   try {
-    const res = await fetch(`${API_URL}${query}`)
-    const data = await res.json();
 
-    // Checking for correct URL
-    if (!res.ok) throw new Error(`${res.statusText} ${res.status}`)
+    const data = await getJSON(`${API_URL}${query}`)
 
     // showing the data from the pizza search result
     console.log(data)
-    const recipes = data.data.recipes;
+    // const recipes = data.data.recipes;
 
   } catch(err) {
+    // Throw error to controller
     throw error
   }
 };
 
 export const loadRecipe = async function(id) {
   try {
-
     // Getting the recipe via the ID
-    const res = await fetch(`${API_URL}${id}`)
-    const { data } = await res.json();
-
-    // Checking for correct URL
-    if (!res.ok) throw new Error(`${res.statusText} ${res.status}`)
+    const { data } = await getJSON(`${API_URL}${id}`);
 
     // Reconfiguring and sending the recipe to the state of the app
     state.recipe = {
