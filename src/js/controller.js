@@ -49,10 +49,8 @@ const controlLoadRecipe = async function() {
 
 };
 
-// Looping over the hashchange and load events.  This will load the recipe based on a change or just loading.
-['hashchange', 'load'].forEach(ev => window.addEventListener(ev, controlLoadRecipe))
-
-
-// create init function
-controlSearchResults();
-controlLoadRecipe();
+const init = function() {
+  recipeView.addHandlerRender(controlLoadRecipe);
+  controlSearchResults();
+}
+init();

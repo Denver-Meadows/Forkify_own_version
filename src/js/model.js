@@ -8,7 +8,6 @@ import {getJSON} from './helpers.js';
 export const state = {
   recipe: {
   },
-  
 };
 
 export const getSearchResults = async function(query) {

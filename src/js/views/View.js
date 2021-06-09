@@ -9,8 +9,11 @@ export default class View {
   _successMessage;
   _failureMessage
 
-
-  // Data -> State -> Controller -> Render in RecipeView
+  /**
+   * Controller takes the data from the state and sets it to this._data to be used in the View. Data -> State -> Controller -> Render in RecipeView
+   * @param {Object} data 
+   * @summary Renders the data to the UI.
+   */
   render = function(data) {
     this._data = data
     const markup = this._generateMarkup();

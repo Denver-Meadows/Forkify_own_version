@@ -10,6 +10,15 @@ class RecipeView extends View {
   _data;
   _failureMessage = 'Sorry please try searching for another recipe.'
 
+  /**
+   * Publisher/Subscriber function.
+   * @param {function} handler 
+   * @summary Looping over the hashchange and load events.  This will load the recipe based on a hash change or just loading.
+   */
+  addHandlerRender(handler) {
+    ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  };
+
   _generateMarkup = function(){
     return`
       <figure class="recipe__fig">
@@ -87,8 +96,6 @@ class RecipeView extends View {
       </div>
     `
   };
-
-
 
   _generateIngMarkup = function(ing) {
       return`
