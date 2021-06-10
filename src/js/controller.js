@@ -17,7 +17,7 @@ const controlSearchResults = async function() {
   try {
 
     // hardcoding the pizza search.  Will need to update this
-    const query = `?search=pizza`
+    const query = `avocado`
     await model.getSearchResults(query)
 
   }catch(err) {

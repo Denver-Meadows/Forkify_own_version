@@ -6,18 +6,34 @@ import {getJSON} from './helpers.js';
 
 
 export const state = {
-  recipe: {
+  recipe: {},
+  search: {
+    query: '',
+    results: [],
   },
 };
 
+/**
+ * Gets JSON from query input.  Converts the results to proper format and stores results and query in the state.
+ * @param {string} query 
+ */
 export const getSearchResults = async function(query) {
   try {
 
-    const data = await getJSON(`${API_URL}${query}`)
+    const { data } = await getJSON(`${API_URL}?search=${query}`)
 
-    // showing the data from the pizza search result
-    console.log(data)
-    // const recipes = data.data.recipes;
+    state.search.query = query;
+    state.search.results = data.recipes.map(rec => {
+      return {
+        id: rec.id,
+        imageUrl: rec.image_url,
+        publisher: rec.publisher,
+        title: rec.title,
+      };
+    });
+
+    console.log(state.search.results);
+    console.log(state.search.query)
 
   } catch(err) {
     // Throw error to controller
