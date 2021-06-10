@@ -41,10 +41,10 @@ const controlLoadRecipe = async function() {
     await model.loadRecipe(id);
 
     // Passing the data and rendering
-    recipeView.render(model.state.recipe)
+    recipeView.render(model.state.recipe);
 
   } catch(err) {
-    console.error(`My Err ${err}`)
+    recipeView.renderError();
   }
 
 };

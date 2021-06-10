@@ -8,7 +8,8 @@ import {Fraction} from 'fractional';
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _data;
-  _failureMessage = 'Sorry please try searching for another recipe.'
+  _errorMessage = 'Sorry please try searching for another recipe.';
+  _successMessage = '';
 
   /**
    * Publisher/Subscriber function.
@@ -17,6 +18,35 @@ class RecipeView extends View {
    */
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  };
+
+  renderError(message = this._errorMessage) {
+    const markup = `
+      <div class="error">
+        <div>
+          <svg>
+            <use href="${icons}#icon-alert-triangle"></use>
+          </svg>
+        </div>
+        <p>${message}</p>
+      </div> 
+      `
+    this.clear();
+    this._parentElement.insertAdjacentHTML('afterbegin', markup)
+  };
+
+  renderMessage(message = this._successMessage) {
+    const markup = `
+      <div class="recipe">
+      <div class="message">
+        <div>
+          <svg>
+            <use href="${icons}#icon-smile"></use>
+          </svg>
+        </div>
+        <p>${message}</p>
+      </div>
+    `
   };
 
   _generateMarkup = function(){
