@@ -4,6 +4,7 @@ import { async } from 'regenerator-runtime/runtime';
 import icons from 'url:../img/icons.svg'
 import * as model from '../js/model.js';
 import recipeView from '../js/views/recipeView.js';
+import searchView from './views/searchView.js';
 
 
 // API for this app
@@ -11,20 +12,6 @@ import recipeView from '../js/views/recipeView.js';
 
 // TODO
 // view "LEFT OFF HERE"
-
-
-const controlSearchResults = async function() {
-  try {
-
-    // hardcoding the pizza search.  Will need to update this
-    const query = `avocado`
-    await model.getSearchResults(query)
-
-  }catch(err) {
-    console.error(`My Err ${err}`)
-  }
-};
-
 
 // Controller for loading the recipe
 const controlLoadRecipe = async function() {
@@ -49,8 +36,25 @@ const controlLoadRecipe = async function() {
 
 };
 
+
+const controlSearchResults = async function() {
+  try {
+
+    // hardcoding the pizza search.  Will need to update this
+    const query = searchView.getQuery();
+    if (!query) return;
+
+    await model.getSearchResults(query)
+
+  }catch(err) {
+    // will need to setup a searchResultsView and render and error
+    console.error(`My Err ${err}`)
+  }
+};
+
+
 const init = function() {
   recipeView.addHandlerRender(controlLoadRecipe);
-  controlSearchResults();
+  searchView.addHandlerSearch(controlSearchResults);
 }
 init();

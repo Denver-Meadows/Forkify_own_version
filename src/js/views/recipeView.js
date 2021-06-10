@@ -12,9 +12,9 @@ class RecipeView extends View {
   _successMessage = '';
 
   /**
-   * Publisher/Subscriber function.
+   * Publisher/Subscriber function which will render the recipes (see summary).
    * @param {function} handler 
-   * @summary Looping over the hashchange and load events.  This will load the recipe based on a hash change or just loading.
+   * @summary Looping over the hashchange and load events.  This will load the recipe based on a hash-change or when loading.
    */
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
