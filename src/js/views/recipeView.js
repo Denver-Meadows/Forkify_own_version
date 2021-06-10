@@ -20,35 +20,6 @@ class RecipeView extends View {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   };
 
-  renderError(message = this._errorMessage) {
-    const markup = `
-      <div class="error">
-        <div>
-          <svg>
-            <use href="${icons}#icon-alert-triangle"></use>
-          </svg>
-        </div>
-        <p>${message}</p>
-      </div> 
-      `
-    this.clear();
-    this._parentElement.insertAdjacentHTML('afterbegin', markup)
-  };
-
-  renderMessage(message = this._successMessage) {
-    const markup = `
-      <div class="recipe">
-      <div class="message">
-        <div>
-          <svg>
-            <use href="${icons}#icon-smile"></use>
-          </svg>
-        </div>
-        <p>${message}</p>
-      </div>
-    `
-  };
-
   _generateMarkup = function(){
     return`
       <figure class="recipe__fig">

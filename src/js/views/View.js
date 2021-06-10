@@ -36,6 +36,35 @@ export default class View {
     this._parentElement.insertAdjacentHTML('afterbegin', markup);
   };
 
+  renderError(message = this._errorMessage) {
+    const markup = `
+      <div class="error">
+        <div>
+          <svg>
+            <use href="${icons}#icon-alert-triangle"></use>
+          </svg>
+        </div>
+        <p>${message}</p>
+      </div> 
+      `
+    this.clear();
+    this._parentElement.insertAdjacentHTML('afterbegin', markup)
+  };
+
+  renderMessage(message = this._successMessage) {
+    const markup = `
+      <div class="recipe">
+      <div class="message">
+        <div>
+          <svg>
+            <use href="${icons}#icon-smile"></use>
+          </svg>
+        </div>
+        <p>${message}</p>
+      </div>
+    `
+  };
+
   clear = function() {
     this._parentElement.innerHTML = '';
   };
