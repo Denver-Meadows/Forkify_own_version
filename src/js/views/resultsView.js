@@ -6,25 +6,33 @@ import View from './View.js'
 
 
 class ResultsView extends View {
-  _parentElement = document.querySelector('.search-results');
+  _parentElement = document.querySelector('.results');
   _data;
-  _errorMessage = '';
+  _errorMessage = 'Sorry, please try searching for another recipe.';
   _successMessage = '';
 
   _generateMarkup = function(){
-    console.log(this._data)
-    return`
+    // Loop over the returned data and generate the markup.
+    return this._data.map(rec => this._generatePreviewMarkup(rec)).join('')
+  };
+
+  /**
+   * Receive object of recipe results and generate markup to be rendered
+   * @param {object} rec 
+   */
+  _generatePreviewMarkup(rec){
+    return `
       <li class="preview">
-        <a class="preview__link preview__link--active" href="#23456">
+        <a class="preview__link" href="#${rec.id}">
           <figure class="preview__fig">
-            <img src="src/img/test-1.jpg" alt="Test" />
+            <img src="${rec.imageUrl}" alt="${rec.title}" />
           </figure>
           <div class="preview__data">
-            <h4 class="preview__title">Pasta with Tomato Cream ...</h4>
-            <p class="preview__publisher">The Pioneer Woman</p>
+            <h4 class="preview__title">${rec.title}</h4>
+            <p class="preview__publisher">${rec.publisher}</p>
             <div class="preview__user-generated">
               <svg>
-                <use href="src/img/icons.svg#icon-user"></use>
+                <use href="${icons}#icon-user"></use>
               </svg>
             </div>
           </div>

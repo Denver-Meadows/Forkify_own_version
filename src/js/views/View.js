@@ -12,12 +12,13 @@ export default class View {
   /**
    * Controller takes the data from the state and sets it to this._data to be used in the View. Data -> State -> Controller -> Render in RecipeView
    * @param {Object} data 
-   * @summary Renders the data to the UI.
+   * @summary Renders the data to the UI.  If there is no data, render the error.
    */
   render = function(data) {
+    if (!data || data.length === 0) return this.renderError()
+
     this._data = data
     const markup = this._generateMarkup();
-
 
     this.clear()
     this._parentElement.insertAdjacentHTML('afterbegin', markup)

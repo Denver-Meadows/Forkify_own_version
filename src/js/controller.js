@@ -52,7 +52,8 @@ const controlSearchResults = async function() {
 
   }catch(err) {
     // will need to setup a resultsView and render and error
-    console.error(`My Err ${err}`)
+    // console.error(`My Err ${err}`)
+    resultsView.renderError();
   }
 };
 
