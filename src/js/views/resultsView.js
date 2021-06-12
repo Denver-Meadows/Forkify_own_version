@@ -6,12 +6,13 @@ import View from './View.js'
 
 
 class ResultsView extends View {
-  _parentElement = document.querySelector('search-results');
+  _parentElement = document.querySelector('.search-results');
   _data;
   _errorMessage = '';
   _successMessage = '';
 
   _generateMarkup = function(){
+    console.log(this._data)
     return`
       <li class="preview">
         <a class="preview__link preview__link--active" href="#23456">
