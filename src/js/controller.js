@@ -6,6 +6,7 @@ import * as model from '../js/model.js';
 import recipeView from '../js/views/recipeView.js';
 import resultsView from './views/resultsView.js';
 import searchView from './views/searchView.js';
+import paginationView from './views/paginationView.js';
 
 
 // API for this app
@@ -18,17 +19,17 @@ import searchView from './views/searchView.js';
 const controlLoadRecipe = async function() {
   try {
 
-    // Get the id of the recipe from the href url
+    // 1) Get the id of the recipe from the href url
     const id = window.location.hash.slice(1)
     if (!id) return;
     
-    // Render Spinner
+    // 2) Render Spinner
     recipeView.renderSpinner();
 
-    // Awaiting the AJAX call
+    // 3) Await the data
     await model.loadRecipe(id);
 
-    // Passing the data and rendering
+    // 4) Pass the data to the view and render
     recipeView.render(model.state.recipe);
 
   } catch(err) {
@@ -41,15 +42,19 @@ const controlLoadRecipe = async function() {
 const controlSearchResults = async function() {
   try {
 
-    // Get user's search result
+    // 1) Get user's search result
     const query = searchView.getQuery();
     if (!query) return;
 
+    // 2) Await data
     await model.getSearchResults(query);
 
-    // Render search results
+    // 3) Render search results
     resultsView.render(model.getSearchResultsPage(1))
-    //resultsView.render(model.state.search.results);
+  
+    // 4) Render pagination buttons.  Calling render to send the search data to the paginationView.
+    paginationView.render(model.state.search)
+    
 
   }catch(err) {
     resultsView.renderError();
