@@ -32,9 +32,6 @@ export const getSearchResults = async function(query) {
       };
     });
 
-    console.log(state.search.results);
-    console.log(state.search.query)
-
   } catch(err) {
     // Throw error to controller
     throw error

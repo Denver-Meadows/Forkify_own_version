@@ -4,6 +4,7 @@ import { async } from 'regenerator-runtime/runtime';
 import icons from 'url:../img/icons.svg'
 import * as model from '../js/model.js';
 import recipeView from '../js/views/recipeView.js';
+import resultsView from './views/resultsView.js';
 import searchView from './views/searchView.js';
 
 
@@ -40,11 +41,14 @@ const controlLoadRecipe = async function() {
 const controlSearchResults = async function() {
   try {
 
-    // hardcoding the pizza search.  Will need to update this
+    // Get user's search result
     const query = searchView.getQuery();
     if (!query) return;
 
-    await model.getSearchResults(query)
+    await model.getSearchResults(query);
+
+    // Render search results
+    console.log(model.state.search.results);
 
   }catch(err) {
     // will need to setup a searchResultsView and render and error
