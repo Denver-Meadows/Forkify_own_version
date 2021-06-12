@@ -1,4 +1,4 @@
-import {API_URL} from './config.js';
+import {API_URL, RES_PER_PAGE} from './config.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime/runtime';
@@ -10,6 +10,7 @@ export const state = {
   search: {
     query: '',
     results: [],
+    page: 1,
   },
 };
 
@@ -58,8 +59,21 @@ export const loadRecipe = async function(id) {
   } catch(err) {
     // Throw error to controller
     throw err
-  }
+  };
 };
 
+/**
+ * Receives a page number and returns results we want to render per that page.
+ * @param {number} page 
+ * @returns Sliced amount of results from the state that correlates to the page number entered.
+ * @summary Set the page default to what's in the state.  Then whatever page is entered, that page # is set in the state.
+ */
+export const getSearchResultsPage = function(page = state.search.page) {
+  state.search.page = page
+  const resultsPerPage = RES_PER_PAGE;
+  
+  const start = (page - 1) * resultsPerPage;
+  const end = page * resultsPerPage;
 
-
+  return state.search.results.slice(start, end);
+};

@@ -48,11 +48,10 @@ const controlSearchResults = async function() {
     await model.getSearchResults(query);
 
     // Render search results
-    resultsView.render(model.state.search.results);
+    resultsView.render(model.getSearchResultsPage(1))
+    //resultsView.render(model.state.search.results);
 
   }catch(err) {
-    // will need to setup a resultsView and render and error
-    // console.error(`My Err ${err}`)
     resultsView.renderError();
   }
 };
