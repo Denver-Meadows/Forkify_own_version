@@ -50,20 +50,32 @@ const controlSearchResults = async function() {
     await model.getSearchResults(query);
 
     // 3) Render search results
-    resultsView.render(model.getSearchResultsPage(3))
+    resultsView.render(model.getSearchResultsPage())
   
     // 4) Render pagination buttons.  Calling render to send the search data to the paginationView.
     paginationView.render(model.state.search)
     
-
   }catch(err) {
     resultsView.renderError();
   }
+};
+
+/**
+ *  Recieves page number from paginationView when next or prev button is clicked.  Renders the results and buttons based on the page number.
+ * @param {number} goToPage 
+ */
+const controlPagination = function(goToPage) {
+  // 1) Render results
+  resultsView.render(model.getSearchResultsPage(goToPage));
+
+  // 2) Render the pagination buttons based on current page number
+  paginationView.render(model.state.search);
 };
 
 
 const init = function() {
   recipeView.addHandlerRender(controlLoadRecipe);
   searchView.addHandlerSearch(controlSearchResults);
-}
+  paginationView.addHandlerClick(controlPagination);
+};
 init();
