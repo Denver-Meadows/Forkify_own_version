@@ -18,14 +18,17 @@ import paginationView from './views/paginationView.js';
 // Controller for loading the recipe
 const controlLoadRecipe = async function() {
   try {
-
-    // 1) Get the id of the recipe from the href url
+    
+    // 0) Get the id of the recipe from the href url
     const id = window.location.hash.slice(1)
     if (!id) return;
     
-    // 2) Render Spinner
+    // 1) Render Spinner
     recipeView.renderSpinner();
 
+    // 2) Update results view to mark selected search result
+    resultsView.update(model.getSearchResultsPage());
+    
     // 3) Await the data
     await model.loadRecipe(id);
 
