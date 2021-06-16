@@ -42,7 +42,6 @@ class RecipeView extends View {
 
       handler();
     })
-
   };
 
   _generateMarkup = function(){

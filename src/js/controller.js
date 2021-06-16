@@ -101,7 +101,7 @@ const controlAddBookmark = function() {
 const init = function() {
   recipeView.addHandlerRender(controlLoadRecipe);
   recipeView.addHandlerRecipeServings(controlServings);
-  recipeView.addHandlerAddBookmark(controlAddBookmark);
+  recipeView.addHandlerAddBookmark(controlAddBookmark)
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
 };
