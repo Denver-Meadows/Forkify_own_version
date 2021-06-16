@@ -92,6 +92,8 @@ export const updateServings = function(newServings) {
 
 export const addBookmark = function(recipe) {
   state.bookmarks.push(recipe);
-  
+
   if (recipe.id === state.recipe.id) recipe.bookmarked = true;
+
+  
 };
