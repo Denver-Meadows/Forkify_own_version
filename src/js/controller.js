@@ -7,6 +7,7 @@ import recipeView from '../js/views/recipeView.js';
 import resultsView from './views/resultsView.js';
 import searchView from './views/searchView.js';
 import paginationView from './views/paginationView.js';
+import bookmarkView from './views/bookmarkView.js';
 
 
 // API for this app
@@ -95,7 +96,9 @@ const controlAddBookmark = function() {
     model.addBookmark(model.state.recipe);
     else model.deleteBookmark(model.state.recipe.id);
 
-  recipeView.update(model.state.recipe)
+  recipeView.update(model.state.recipe);
+  bookmarkView.render(model.state.bookmarks);
+  
 };
 
 const init = function() {
