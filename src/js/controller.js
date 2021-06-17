@@ -9,12 +9,8 @@ import searchView from './views/searchView.js';
 import paginationView from './views/paginationView.js';
 import bookmarkView from './views/bookmarkView.js';
 
-
 // API for this app
 // https://forkify-api.herokuapp.com/v2
-
-// TODO
-// view "LEFT OFF HERE"
 
 // Controller for loading the recipe
 const controlLoadRecipe = async function() {

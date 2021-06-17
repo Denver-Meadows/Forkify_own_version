@@ -9,7 +9,7 @@ class ResultsView extends View {
   _parentElement = document.querySelector('.results');
   _data;
   _errorMessage = 'Sorry, please try searching for another recipe.';
-  _successMessage = '';
+  _successMessage = 'Please start by searching for a recipe';
 
   _generateMarkup = function(){
     // Loop over the returned data and generate the markup.
