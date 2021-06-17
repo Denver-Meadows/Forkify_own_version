@@ -40,7 +40,6 @@ const controlLoadRecipe = async function() {
 
     // 5) Pass the data to the view and render
     recipeView.render(model.state.recipe);
-    console.log(model.state.recipe)
 
   } catch(err) {
     recipeView.renderError();
@@ -99,6 +98,7 @@ const controlAddBookmark = function() {
   recipeView.update(model.state.recipe);
   bookmarkView.render(model.state.bookmarks);
   
+  model.persistBookmarks();
 };
 
 const init = function() {
