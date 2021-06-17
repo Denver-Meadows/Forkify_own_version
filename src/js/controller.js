@@ -29,12 +29,7 @@ const controlLoadRecipe = async function() {
     // 3) Await the data
     await model.loadRecipe(id);
 
-    // 4) Check if current recipe is bookmarked prior to rendering
-    if (model.state.bookmarks.some(bookmark => bookmark.id === id))
-      model.state.recipe.bookmarked = true;
-      else model.state.recipe.bookmarked = false;
-
-    // 5) Pass the data to the view and render
+    // 4) Pass the data to the view and render
     recipeView.render(model.state.recipe);
 
   } catch(err) {

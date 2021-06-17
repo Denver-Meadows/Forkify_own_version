@@ -60,6 +60,11 @@ export const loadRecipe = async function(id) {
       sourceUrl: data.recipe.source_url,
     };
 
+    // Check if current recipe is bookmarked prior to rendering
+    if (state.bookmarks.some(bookmark => bookmark.id === id))
+      state.recipe.bookmarked = true;
+      else state.recipe.bookmarked = false;
+
   } catch(err) {
     // Throw error to controller
     throw err
