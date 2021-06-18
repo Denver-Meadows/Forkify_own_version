@@ -116,6 +116,7 @@ export const persistBookmarks = function() {
   localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
 };
 
+
 const init = function() {
   const storage = localStorage.getItem('bookmarks');
   if (storage) state.bookmarks = JSON.parse(storage);
