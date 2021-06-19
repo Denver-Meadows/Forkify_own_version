@@ -94,10 +94,16 @@ const controlAddBookmark = function() {
   model.persistBookmarks();
 };
 
-const controlAddRecipe = function(newRecipe) {
-  console.log(newRecipe);
-
-  // Upload new recipe data
+const controlAddRecipe = async function(newRecipe) {
+  try {
+    console.log(newRecipe);
+    
+    // Upload new recipe data
+    await model.uploadRecipe(newRecipe)
+  } catch(err) {
+    console.error(`Hello ${err.message}`);
+    addRecipeView.renderError(err.message)
+  }
 };
 
 const init = function() {
