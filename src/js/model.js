@@ -1,8 +1,8 @@
-import {API_URL, RES_PER_PAGE} from './config.js';
+import {API_URL, RES_PER_PAGE, KEY} from './config.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime/runtime';
-import {getJSON} from './helpers.js';
+import {getJSON, sendJSON} from './helpers.js';
 
 
 export const state = {
@@ -43,22 +43,26 @@ export const getSearchResults = async function(query) {
   }
 };
 
+const createRecipeObject = function(data) {
+  // Reconfiguring and sending the recipe to the state of the app
+  return {
+    title: data.recipe.title,
+    cookingTime: data.recipe.cooking_time,
+    id: data.recipe.id,
+    imageUrl: data.recipe.image_url,
+    ingredients: data.recipe.ingredients,
+    publisher: data.recipe.publisher,
+    servings: data.recipe.servings,
+    sourceUrl: data.recipe.source_url,
+  };
+};
+
 export const loadRecipe = async function(id) {
   try {
     // Getting the recipe via the ID
     const { data } = await getJSON(`${API_URL}${id}`);
 
-    // Reconfiguring and sending the recipe to the state of the app
-    state.recipe = {
-      title: data.recipe.title,
-      cookingTime: data.recipe.cooking_time,
-      id: data.recipe.id,
-      imageUrl: data.recipe.image_url,
-      ingredients: data.recipe.ingredients,
-      publisher: data.recipe.publisher,
-      servings: data.recipe.servings,
-      sourceUrl: data.recipe.source_url,
-    };
+    state.recipe = createRecipeObject(data);
 
     // Check if current recipe is bookmarked prior to rendering
     if (state.bookmarks.some(bookmark => bookmark.id === id))
@@ -147,8 +151,11 @@ export const uploadRecipe = async function(newRecipe) {
       cooking_time: +newRecipe.cookingTime,
       servings: +newRecipe.servings,
       ingredients,
-    }
-    console.log(recipe)
+    };
+
+    const { data } = await sendJSON(`${API_URL}?key=${KEY}`, recipe);
+    state.recipe = createRecipeObject(data);
+
   } catch(err) {
       throw err;
   };
