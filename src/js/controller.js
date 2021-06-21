@@ -58,6 +58,7 @@ const controlSearchResults = async function() {
     paginationView.render(model.state.search)
     
   }catch(err) {
+    console.error(err)
     resultsView.renderError();
   }
 };
@@ -126,5 +127,6 @@ const init = function() {
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
+  if (model.state.bookmarks) bookmarkView.render(model.state.bookmarks)
 };
 init();

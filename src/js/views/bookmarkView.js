@@ -12,7 +12,6 @@ class BookmarkView extends View {
   _successMessage = '';
 
   _generateMarkup = function() {
-    console.log(this._data)
     return this._data.map(rec => this._generateMarkupPreview(rec)).join('')
   };
 
