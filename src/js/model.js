@@ -4,7 +4,6 @@ import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime/runtime';
 import {getJSON, sendJSON} from './helpers.js';
 
-
 export const state = {
   recipe: {},
   search: {
@@ -61,18 +60,14 @@ const createRecipeObject = function(data) {
 
 export const loadRecipe = async function(id) {
   try {
-    // Getting the recipe via the ID
     const { data } = await getJSON(`${API_URL}${id}?key=${KEY}`);
-
     state.recipe = createRecipeObject(data);
 
-    // Check if current recipe is bookmarked prior to rendering
     if (state.bookmarks.some(bookmark => bookmark.id === id))
       state.recipe.bookmarked = true;
       else state.recipe.bookmarked = false;
 
   } catch(err) {
-    // Throw error to controller
     throw err
   };
 };
@@ -85,7 +80,6 @@ export const loadRecipe = async function(id) {
  */
 export const getSearchResultsPage = function(page = state.search.page) {
   state.search.page = page
-  
   const start = (page - 1) * state.search.resultsPerPage;
   const end = page * state.search.resultsPerPage;
 
@@ -103,7 +97,6 @@ export const updateServings = function(newServings) {
 
 export const addBookmark = function(recipe) {
   state.bookmarks.push(recipe);
-
   if (recipe.id === state.recipe.id) recipe.bookmarked = true;
 
   persistBookmarks();
@@ -122,7 +115,6 @@ export const persistBookmarks = function() {
   localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
 };
 
-
 const init = function() {
   const storage = localStorage.getItem('bookmarks');
   if (storage) state.bookmarks = JSON.parse(storage);
@@ -135,7 +127,6 @@ const clearBookmarks = function() {
 
 export const uploadRecipe = async function(newRecipe) {
   try {
-
     const ingredients = Object.entries(newRecipe)
     .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
     .map(ing => {
@@ -164,7 +155,5 @@ export const uploadRecipe = async function(newRecipe) {
   } catch(err) {
       throw err;
   };
-
-
 
 };

@@ -10,9 +10,8 @@ export default class View {
   _failureMessage
 
   /**
-   * Controller takes the data from the state and sets it to this._data to be used in the View. Data -> State -> Controller -> Render in RecipeView
+   * Data -> State -> Controller -> Render in RecipeView
    * @param {Object} data 
-   * @summary Renders the data to the UI.  If there is no data, render the error.
    */
   render = function(data) {
     if (!data || data.length === 0) return this.renderError()
@@ -35,31 +34,22 @@ export default class View {
     this._data = data
     const newMarkup = this._generateMarkup();
 
-    // 1) Converting the string returned by newMarkup to a new DOM object that lives in the memory, not on the page.
     const newDOM = document.createRange().createContextualFragment(newMarkup);
-
-    // 2) Selecting all elements from the newDOM which returns a nodeList, put them in an array so they can be compared to the current DOM elements.
-    // const newElements = newDOM.querySelectorAll('*');
     const newElements = Array.from(newDOM.querySelectorAll('*'));
-
-    // 3) Put the current DOM elements in array for comparison.
     const curElements = Array.from(this._parentElement.querySelectorAll('*'));
 
-    // 4) Check for changed Text and updates.  If there isn't a text value, the nodeValue method will return null and the replacement will not take place.
     newElements.forEach((newEl, i) => {
       const curEl = curElements[i];
       if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== '') {
         curEl.textContent = newEl.textContent
       };
 
-      // 5) Check if any attributes have changed and update. 
       if (!newEl.isEqualNode(curEl)) {
         Array.from(newEl.attributes).forEach(attr => curEl.setAttribute(attr.name, attr.value));
       };
     });
   };
 
-  // Render Spinner in between loading images
   renderSpinner = function() {
     const markup = `
       <div class="spinner">

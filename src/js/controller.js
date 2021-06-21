@@ -14,24 +14,18 @@ import {MODAL_CLOSE_SEC} from './config.js';
 // API for this app
 // https://forkify-api.herokuapp.com/v2
 
-// Controller for loading the recipe
 const controlLoadRecipe = async function() {
   try {
     
-    // 0) Get the id of the recipe from the href url
     const id = window.location.hash.slice(1)
     if (!id) return;
     
-    // 1) Render Spinner
     recipeView.renderSpinner();
 
-    // 2) Update results view to mark selected search result
     resultsView.update(model.getSearchResultsPage());
     
-    // 3) Await the data
     await model.loadRecipe(id);
 
-    // 4) Pass the data to the view and render
     recipeView.render(model.state.recipe);
 
   } catch(err) {
@@ -44,17 +38,13 @@ const controlLoadRecipe = async function() {
 const controlSearchResults = async function() {
   try {
 
-    // 1) Get user's search result
     const query = searchView.getQuery();
     if (!query) return;
 
-    // 2) Await data
     await model.getSearchResults(query);
 
-    // 3) Render search results
     resultsView.render(model.getSearchResultsPage())
   
-    // 4) Render pagination buttons.  Calling render to send the search data to the paginationView.
     paginationView.render(model.state.search)
     
   }catch(err) {
@@ -98,7 +88,7 @@ const controlAddBookmark = function() {
 const controlAddRecipe = async function(newRecipe) {
   try {
     addRecipeView.renderSpinner();
-    // Upload new recipe data
+
     await model.uploadRecipe(newRecipe)
 
     recipeView.render(model.state.recipe);

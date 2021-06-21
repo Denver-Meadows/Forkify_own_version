@@ -1,9 +1,5 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import { async } from 'regenerator-runtime/runtime';
-import icons from 'url:../../img/icons.svg'
-import View from './View.js'
-
+import icons from 'url:../../img/icons.svg';
+import View from './View.js';
 
 class BookmarkView extends View {
   _parentElement = document.querySelector('.bookmarks__list');
@@ -35,7 +31,6 @@ class BookmarkView extends View {
       </li>
     `
   };
-
 
 };
 

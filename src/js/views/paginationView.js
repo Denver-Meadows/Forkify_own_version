@@ -1,9 +1,5 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import { async } from 'regenerator-runtime/runtime';
-import icons from 'url:../../img/icons.svg'
-import View from './View.js'
-
+import icons from 'url:../../img/icons.svg';
+import View from './View.js';
 
 class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
@@ -65,7 +61,6 @@ class PaginationView extends View {
       // Get page number from the dataset attribute
       const goToPage = +btn.dataset.goto 
 
-      // Pass the page number to the controller
       handler(goToPage)
 
     });

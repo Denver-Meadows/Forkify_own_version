@@ -1,9 +1,4 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import { async } from 'regenerator-runtime/runtime';
-import icons from 'url:../../img/icons.svg'
-import View from './View.js'
-
+import View from './View.js';
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector('.upload');
@@ -43,10 +38,6 @@ class AddRecipeView extends View {
       handler(data)
     })
   }
-
-  _generateMarkup = function() {
-    
-  };
 
 };
 

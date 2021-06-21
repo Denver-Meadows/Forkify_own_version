@@ -1,9 +1,4 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import { async } from 'regenerator-runtime/runtime';
-import icons from 'url:../../img/icons.svg'
 import View from './View.js'
-
 
 class SearchView extends View {
   _parentElement = document.querySelector('.search');
@@ -19,14 +14,12 @@ class SearchView extends View {
   };
 
   addHandlerSearch(handler) {
-    // Listen for submit on the search form element
     this._parentElement.addEventListener('submit', function(e){
-      e.preventDefault(); // stop page from reloading
+      e.preventDefault(); 
       handler();
     });
   };
 
 };
 
-// Export instance of SearchView class
 export default new SearchView();
